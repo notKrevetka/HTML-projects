@@ -1,0 +1,49 @@
+body {
+    counter-reset: section;    
+}
+div {
+    position: absolute;  
+}
+table{
+    outline: 3px solid brown;
+    margin-top: 30px;
+    margin-left: 2px;
+    margin-right: 3%;
+    visibility: hidden;
+    border-collapse: collapse;
+    position: absolute; 
+    width: 97%;
+}
+
+th, td {
+   border: 2px solid grey;
+   
+}
+
+h3::before {
+    counter-increment: section;
+    content: "Вопрос " counter(section) ": "; 
+} 
+
+.otvet{
+    width: 100px; height: 100px;
+    outline: 3px solid red;
+    background-color: blanchedalmond;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    position: absolute;
+    left: 0; right: 0;
+    cursor: pointer;
+}
+
+
+UL { 
+    list-style-type: square; 
+    list-style-position: outside; 
+    color: navy; 
+}
+li:hover {
+    background: #786b59; /* Цвет фона под ссылкой */ 
+    color: #ffe; /* Цвет ссылки */ 
+}
