@@ -1,0 +1,148 @@
+<html>
+	<head > 
+
+	<style>
+		.red{
+			background-color: #9e5454;
+			width: 200px;
+			height: 200px;
+			display: none;
+			margin-left: auto;
+   			margin-right: auto;
+			border-radius: 10px;
+			
+		}
+		.green{
+			background-color: #4d8f58;
+			width: 200px;
+			height: 200px;
+			display: none;
+			margin-left: auto;
+   			margin-right: auto;
+			border-radius: 10px;
+		}
+
+	
+		.but{
+			background-color: #005F83; 
+			border: none;
+			color: white;
+			margin-top: 20px;
+			padding: 2% 4%;
+			border-radius: 10px;
+			text-align: center;
+			display: inline-block;
+			font-size: 150%;
+			cursor: pointer;
+			box-shadow: 0 9px #999;
+		}
+		
+		.onvk{
+			background-color: white; 
+			border: none;
+			color: #9e5454 ;
+			margin-top: 20px;
+			padding: 2% 4%;
+			border-radius: 10px;
+			text-align: center;
+			display: inline-block;
+			cursor: pointer;
+			text-decoration: none;		
+		}
+
+		.onvk2{
+			background-color: white; 
+			border: none;
+			margin-top: 20px;
+			padding: 2% 4%;
+			border-radius: 10px;
+			text-align: center;
+			display: inline-block;
+			cursor: pointer;
+			}
+	
+		body{
+		text-align: center;
+		}
+			
+	</style>
+
+	</head >
+	<body>
+		
+		<button class=but value="blue" onclick="myF(this)">МГППУ</button>
+		
+		<div id="1" class="green"> 
+			<input id="3" value = ""> </input>
+			<input type="checkbox" name="enabled" ONCHANGE="myFun()" class = "onvk" id = "flag" checked><span>Включить</span>
+			<br>
+			<a href = "new 3 ok.html" value = "ccskm" class = "onvk" id="hre">ccskrf</a>
+		</div>
+		<div id ="2" class="red">
+			<input id="4" value = ""> </input>
+		</div>
+
+		
+
+	<script>
+		
+		
+		var z = 0;
+		var red1 = document.getElementById('2');
+		var green2 = document.getElementById('1');
+		var strG = document.getElementById('3');
+		var strR = document.getElementById('4');
+		var chbox = document.getElementById('flag');
+		var ssilka = document.getElementById('hre');
+	
+		function myFun() {
+		chbox=document.getElementById('flag');
+			if (chbox.checked) {
+				console.log("on");
+				ssilka.classList.add("onvk");
+				}
+				else {
+					console.log("off");
+					ssilka.classList.remove("onvk");
+					ssilka.classList.add("onvk2");
+
+				}
+			}
+		
+
+
+		function myF(button1) {
+			console.log( "text" );
+			if (z === 0) {z = 1;}
+				else {z = 0;}
+				
+			if (z === 1) {
+				button1.style.backgroundColor = "#3e8e41";
+				button1.style.boxShadow = "0 5px #666";
+				button1.style.transform = "translateY(4px)";
+				red1.style.marginTop = "50px";
+				red1.style.display = "block";
+				green2.style.display = "none";
+				strR.value = strG.value;
+				
+			}
+
+			
+
+			if (z === 0) {
+				button1.style.backgroundColor = "#005F83";
+				button1.style.boxShadow = "0 9px #999";
+				button1.style.transform = "translateY(-4px)";
+				green2.style.marginTop = "50px";
+				green2.style.display = "block";
+				red1.style.display = "none";
+				strG.value = strR.value;
+				
+			}
+		}
+	</script>
+		
+	</body>
+	
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> XO </title>
+        <style>
+            .area-wrapper {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+
+            #game {
+                width: 150px;
+                height: 150px;
+                background-color: rgb(255, 232, 197);
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .box {
+                width: 50px;
+                height: 50px;
+                border: 1px solid black;
+                box-sizing: border-box;
+                font-size: 12px;
+                color: brown;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: uppercase;
+            }
+
+        </style>
+    </head>
+    <body onload="funXO()">
+        <div id="game" ></div>
+        <input type ="number"  min = "3" max="99" id ='input'> 
+        <button onclick="funBut()">создать новое поле</button>
+
+            
+        <script>
+
+            var move = 0;
+            var ch, game, h;
+            var p = 3;
+
+            function funXO(){
+                
+                game = document.getElementById('game');
+                game.style.width = p*50 + "px";
+                game.style.height = p*50 + "px";
+                document.getElementById('game').innerHTML= '<div class="box"> </div>';
+
+                for (var i = 0; i < p*p -1; i++ ){
+                    document.getElementById('game').innerHTML+= '<div class="box"> </div>';
+                }
+                document.getElementById('game').onclick = function(event){
+                
+                    if(event.target.className == 'box') {
+                        move % 2 == 0 ? event.target.innerHTML = 'X' :event.target.innerHTML = 'O';
+                        move ++;
+                        check();
+                    }
+                }
+            }
+
+            function check(){
+                ch = document.getElementsByClassName('box');
+                
+                if ((p === 3) || (p === 4)){
+                    for (var i = 0; i < p*p; i++){
+                        if (((ch[i].innerHTML === ch[i+1].innerHTML ) && ch[i+1].innerHTML === ch[i+2].innerHTML) && (ch[i].innerHTML !== ' ')){
+                            console.log('победа', ch[i].innerHTML)}
+                        i+=p-1;
+                    }
+                    for (var i = 0; i < p; i++){
+                        if (((ch[i].innerHTML === ch[i+p].innerHTML ) && ch[i+p].innerHTML === ch[i+p*2].innerHTML) && (ch[i].innerHTML !== ' ')){
+                            console.log('победа', ch[i].innerHTML)}
+                    }
+                    for (var i = 0; i < p-2; i++){
+                        if (((ch[i].innerHTML === ch[i+p+1].innerHTML ) && ch[i+p+1].innerHTML === ch[i+2*p+2].innerHTML) && (ch[i].innerHTML !== ' ')){
+                            console.log('победа', ch[i].innerHTML)}
+                    }
+                    for (var i = p-1; i < p; i++){
+                        if (((ch[i].innerHTML === ch[i+p-1].innerHTML ) && ch[i+p-1].innerHTML === ch[i+p*2-2].innerHTML) && (ch[i].innerHTML !== ' ')){
+                            console.log('победа', ch[i].innerHTML)}
+                    }
+                }else{
+                    for (var i = 0; i < p*p; i++){
+                        for(var j = i; j < i+p-3; j++){
+                            if ((ch[j].innerHTML === ch[j+1].innerHTML ) && (ch[j+1].innerHTML === ch[j+2].innerHTML) && (ch[j].innerHTML !== ' ') && (ch[j+1].innerHTML === ch[j+3].innerHTML) && (ch[j+4].innerHTML === ch[j+2].innerHTML)){
+                                console.log('победа', ch[j].innerHTML)}
+                        }
+                        i+=p-1;
+                    }
+                    for (var i = 0; i < p*p-p*4; i++){
+                        if (((ch[i].innerHTML === ch[i+p].innerHTML ) && ch[i+p].innerHTML === ch[i+p*2].innerHTML) && (ch[i].innerHTML !== ' ') && (ch[i+p].innerHTML === ch[i+p*3].innerHTML) && ch[i+p].innerHTML === ch[i+p*4].innerHTML){
+                            console.log('победа', ch[i].innerHTML)}
+                    }
+                    for (var j = 0; j < p*p-p*4; j++){
+                        for(var i = j; i < j+p-3; i++){
+                        if (((ch[i].innerHTML === ch[i+p+1].innerHTML ) && ch[i+p+1].innerHTML === ch[i+2*p+2].innerHTML) && (ch[i].innerHTML !== ' ') && (ch[i+p+1].innerHTML === ch[i+3*p+3].innerHTML) && (ch[i+p+1].innerHTML === ch[i+4*p+4].innerHTML)){
+                            console.log('победа', ch[i].innerHTML)}
+                        }
+                        j+=p-1;
+                    }
+                    for (var j = 0; j < p*p-p*4; j++){
+                        for(var i = j+4; i < j+p; i++){
+                        if (((ch[i].innerHTML === ch[i+p-1].innerHTML ) && ch[i+p-1].innerHTML === ch[i+2*p-2].innerHTML) && (ch[i].innerHTML !== ' ') && (ch[i+p-1].innerHTML === ch[i+3*p-3].innerHTML) && (ch[i+p-1].innerHTML === ch[i+4*p-4].innerHTML)){
+                            console.log('победа', ch[i].innerHTML)}
+                        }
+                        j+=p-1;
+                    }
+
+                }
+            }
+            function funBut(){
+                h = document.getElementsByClassName('box');
+
+                        while(h.length > 0){
+                             h[0].parentNode.removeChild(h[0]);
+                        }
+            
+                p = document.getElementById('input').value;
+                p = Number(p);
+                console.log(p);
+                move = 0;
+                funXO();
+            }
+        </script>
+           
+    </body>
+</html>

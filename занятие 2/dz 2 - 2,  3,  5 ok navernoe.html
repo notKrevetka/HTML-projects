@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 2 Nesimova </title>
+        <style>
+
+            table th, td {
+               border: 1px solid grey;
+               
+            }
+            table {
+                width: 400px;
+                border-collapse: collapse;
+                text-align: right;
+            }
+            th {
+                width:30px;
+            }
+
+            tr{
+                height: 30px;
+            }
+
+            .over{
+                background-color: none; 
+                border: none;
+                width: 100%;
+                text-align: center;
+                font-size: 300%;
+                display: none;
+                position: absolute;
+                top: 30%;
+                left: 40%;
+                right: 15px;
+                bottom: 15px;
+		    }
+            .inov{
+                background-color: #a7bac9; 
+                border-width: 5px;
+                border-color: #FFFF00;
+                border-radius: 30px;
+                border-style: solid;
+                width: 40%;
+                height: 155px;
+                text-align: center;
+                font-size: 300%;
+                margin: 50, 50,50,50;
+            }
+        </style>
+    </head>
+
+    <body onload="funTable()";>
+
+        <table id="table"></table>
+        <p id="answer"></p>
+        <p><input type="checkbox" id="check" > да</p>
+        <button onclick="funBut()" id="answer">ответ верный</button>
+        <p id="answer1"></p>
+        <p><img src="фигурки.png" width="500" height="500" usemap="#map" alt="Навигация"></p>
+        <p><map name="map"> 
+            <area shape="rect" id="11" alt="квадрат желтый" coords="50, 50, 150, 150"  onclick="kvad(this)">
+            <area shape="rect" id="14" alt="квадрат синий" coords="200, 50, 300, 150"  onclick="kvad(this)">
+            <area shape="rect" id="17" alt="квадрат зеленый" coords="350, 50, 450, 150" onclick="kvad(this)">
+            
+            <area shape="poly" id="41" alt="треугольник желтый" coords="50, 200, 50, 300, 150, 300"  onclick="kvad(this)">
+            <area shape="poly" id="44" alt="треугольник синий" coords="200, 200, 200,300,300,300"  onclick="kvad(this)">
+            <area shape="poly" id="47" alt="треугольник зеленый" coords="350, 200, 350, 300, 450, 300"  onclick="kvad(this)">
+
+            <area shape="circle" id="71" alt="круг желтый" coords="100, 400, 50, 0"  onclick="kvad(this)" >
+            <area shape="circle" id="74" alt="круг синий" coords="250, 400, 50, 0"  onclick="kvad(this)" >
+            <area shape="circle" id="77" alt="круг зеленый" coords="400, 400, 50, 0"  onclick="kvad(this)" >
+          </map></p>
+        <button id="butt" onclick="newBut()"> попытаться заново </button>
+        <div class="over" id="loose"> <p class="inov">loose</p> </div>
+        <div class="over" id="win"> <p class="inov">WIN!</p></div>
+
+        <script>
+
+            var x, y, z, a, k =1, col = 2, va, i, j ;
+            var strok; // вывод примеров
+            var gen_num, ran;
+            var fillstr, nwefil, morefil, morefil1;
+            var korob_ochka;
+            var table, figure, id;
+
+            function funTable(){
+
+                table = document.querySelector('#table');
+                  
+                for (i = 1; i < 10; i++) {
+	                tr = document.createElement('tr');
+                    for (j = 1; j < 10; j++) {
+                        let td = document.createElement('td');
+                        td.innerHTML =i*j; 
+                        td.setAttribute("id", k);
+                        k++; 
+                        tr.appendChild(td);
+                    }
+	            table.appendChild(tr);
+                }
+                     ran = (Math.floor(Math.random() * 81) + 1);
+                     x = document.getElementById(ran);
+                     console.log(x);
+                     va = document.getElementById(ran).innerHTML;
+                     console.log(va);
+                     x.innerHTML= "<input maxlength=2 size=1 >";
+                    
+
+            
+                gen_num = () => parseInt(Math.random() * 9 + 1); 
+                fillstr = () => { 
+                    x = gen_num();
+                    y = gen_num();
+                    return `<p>${x} * ${y} = <input maxlength=2 size=1></p> `
+                }
+                strok = Array(col).fill().map(_ => fillstr());
+                document.getElementById("answer").innerHTML=strok.join('');
+
+                k = (Math.floor(Math.random() * 2));
+                console.log(k);
+                col = 1;
+
+                nwefil = () => {                
+                    x = gen_num();
+                    y = gen_num();
+                    if (k === 0){
+                        return `<p>${x} * ${y} = ${x*y} это верно?</p>`
+                    }
+                        else{
+                            z = gen_num();
+                            a = gen_num();
+                            return `<p>${x} * ${y} = ${a*z} это верно?</p>`
+                        }   
+                }
+                strok = Array(col).fill().map(_ => nwefil());
+                document.getElementById("answer").innerHTML+=strok.join('');
+
+                morefil = () => { 
+                    x = gen_num();
+                    y = gen_num();
+                    z = x*y;
+                    return `<p>${z} / ${y} = <br>Если число 1, 2 или 3 - фигура: квадрата; <br>если 4, 5 или 6 - треугольник; <br>если 7, 8 или 9 - круг </p> `
+                }
+                strok = Array(col).fill().map(_ => morefil());
+                document.getElementById("answer1").innerHTML+=strok.join('');
+                morefil = () => { 
+                    a = gen_num();
+                    y = gen_num();
+                    z = a*y;
+                    return `<p>${z} / ${y} = <br>Если число 1, 2 или 3 - Цвет: желтый; <br>если 4, 5 или 6 - синий; <br>если 7, 8 или 9 - зеленый </p> `
+                }
+                strok = Array(col).fill().map(_ => morefil());
+                document.getElementById("answer1").innerHTML+=strok.join('');
+
+                
+                
+            }   
+
+            function funBut(){
+                korob_ochka = document.getElementById("check");
+                if (((k === 0) && (korob_ochka.checked)) || ((k === 1) && (korob_ochka.checked === false))){
+                        alert('ответ верный');}
+                    else{
+                        alert('ответ не верный');}  
+            }
+
+            function wiwin(){
+                document.body.style.background = "#9ba832";
+                document.getElementById('win').style.display = "inline-flex";
+                document.getElementById('loose').style.display = "none";
+
+            }
+            function nowin(){
+                document.body.style.background = "#a83432";
+                document.getElementById('loose').style.display = "inline-flex";
+                document.getElementById('win').style.display = "none";
+
+            }
+
+            function newBut(){
+                morefil = () => { 
+                    x = gen_num();
+                    y = gen_num();
+                    z = x*y;
+                    return `<p>${z} / ${y} = <br>Если число 1, 2 или 3 - фигура: квадрата; <br>если 4, 5 или 6 - треугольник; <br>если 7, 8 или 9 - круг </p> `
+                }
+                strok = Array(col).fill().map(_ => morefil());
+                document.getElementById("answer1").innerHTML=strok.join('');
+                morefil = () => { 
+                    a = gen_num();
+                    y = gen_num();
+                    z = a*y;
+                    return `<p>${z} / ${y} = <br>Если число 1, 2 или 3 - Цвет: желтый; <br>если 4, 5 или 6 - синий; <br>если 7, 8 или 9 - зеленый </p> `
+                }
+                strok = Array(col).fill().map(_ => morefil());
+                document.getElementById("answer1").innerHTML+=strok.join('');
+                document.getElementById('loose').style.display = "none";
+                document.getElementById('win').style.display = "none";
+                document.body.style.background = "none";
+
+            }
+
+
+            function kvad(va) {
+                console.log('x = ', x, "a = ", a);
+                id = va.getAttribute('id');
+                ran = Number(id);
+                console.log(ran);
+                if (x < 4) {
+                    if (a < 4) { console.log("квадрат желтый");
+                        if (ran === 11){wiwin();}
+                            else {nowin();}
+                    }
+                    if ((a > 3) && (a < 7)) { console.log("квадрат синий");
+                        if (ran === 14){wiwin();}
+                            else {nowin();}
+                    }
+                    if (a > 6) { console.log("квадрат зеленый");
+                        if (ran === 17){wiwin();}
+                           else {nowin();}
+                    }
+                } 
+                if ( (x > 3) && (x < 7) ) {
+                    if (a < 4) { console.log("треугольник желтый");
+                        if (ran === 41){wiwin();}
+                        else {nowin();}
+                    }
+                    if ((a > 3) && (a < 7)) { console.log("треугольник синий");
+                        if (ran === 44){wiwin();}
+                        else {nowin();}
+                    }
+                    if (a > 6) { console.log("треугольник зеленый");
+                        if (ran === 47){wiwin();}
+                        else {nowin();}
+                    }
+                } 
+                if (x > 6) {
+                    if (a < 4) { console.log("круг желтый");
+                        if (ran === 71){wiwin();}
+                        else {nowin();}
+                    }
+                    if ((a > 3) && (a < 7)) { console.log("круг синий");
+                        if (ran === 74){wiwin();}
+                        else {nowin();}
+                    }
+                    if (a > 6) { console.log("круг зеленый");
+                        if (ran === 77)wiwin();}
+                        else {nowin();}
+                    }
+                } 
+
+        </script>
+
+        <table id="table"></table>
+
+    </body>
+</html>

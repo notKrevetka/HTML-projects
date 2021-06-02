@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <title>dz2.1</title>
+      <style>
+        .grade{
+            visibility: hidden;
+        }
+
+        .aloud{
+            visibility: hidden; 
+        }
+
+        .ps {
+            visibility: hidden; 
+        }
+      </style>
+      
+</head>
+      <body>
+            <form> 
+                <input type="text"  Placeholder="введите возраст" onchange="agech()" name="age" id = "age"><br>
+                  
+                <p>Вы студент?  <input type="checkbox" onclick="agech()" name="красная книга" id="flag"></p>
+                
+                <input type="text" class="grade" Placeholder="введите оценку" onchange="agech()" name="grade"   id = "grade"><br>
+
+                <a href = "dz 2 - 2.html" class="aloud" id="paragraph"></a>
+                <p class="ps" id="ps"></p>
+
+                <button  type="button"onclick="send()">test</button>
+            <input type="reset">
+            </form>
+
+        <script>
+
+            var gr=document.getElementById("grade");
+            var aGe = document.getElementById('age');
+            var chbox=document.getElementById('flag');
+            var paragraph=document.getElementById('paragraph');
+            var ps =document.getElementById('ps');
+
+            function agech(){
+                if(chbox.checked){
+			    	console.log("on");
+                    gr.style.visibility ="visible";     
+                }
+                else{
+                    gr.style.visibility="hidden";
+                }
+                
+            }
+
+            function send() {
+		        if(chbox.checked){
+                    if (aGe.value >= 18 && aGe.value <= 30){
+                        if (gr.value>=13 && gr.value <=15){
+                            paragraph.textContent="ссылка1";
+                            paragraph.style.visibility = "visible";
+                            console.log("hehe");
+                        }
+                        else{
+                            ps.textContent="Допускаются только студенты, получившие оценку от 13 до 15, в возрасте от 18 до 30 лет";
+                            ps.style.visibility = "visible";
+                            console.log('i am');
+                        }
+                    }
+                    else{
+                            ps.textContent="Допускаются только студенты, получившие оценку от 13 до 15, в возрасте от 18 до 30 лет  ";
+                            ps.style.visibility = "visible";
+                            console.log('i am');
+                        }
+                }
+			    
+            }
+
+        </script>
+      </body>
+</html>

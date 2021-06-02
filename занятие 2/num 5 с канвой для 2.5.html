@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        
+               
+
+    </style>
+    <title> dz1.5</title>
+</head>
+      <body>
+            <canvas id="canvas" style="display: block;"> mass</canvas>
+
+            <script>
+
+                var canv = document.getElementById('canvas');
+                var ctx = canv.getContext('2d');
+                canv.width = window.innerWidth;
+                canv.height = window.innerHeight;
+
+                ctx.fillStyle ='#dbca6b';
+                ctx.fillRect(50, 50, 100, 100);
+                ctx.beginPath();
+                        ctx.moveTo(50,200);
+                        ctx.lineTo(50,300);
+                        ctx.lineTo(150,300);
+                        ctx.fill();
+                        ctx.beginPath ();
+                ctx.arc (100, 400, 50, 0, Math.PI * 2, false);
+                ctx.fill();
+
+                ctx.fillStyle ='#6ba5db';
+                ctx.fillRect(200, 50, 100, 100);
+                ctx.beginPath();
+                        ctx.moveTo(200,200);
+                        ctx.lineTo(200,300);
+                        ctx.lineTo(300,300);
+                        ctx.fill();
+                        ctx.beginPath ();
+                ctx.arc (250, 400, 50, 0, Math.PI * 2, false);
+                ctx.fill();
+
+                ctx.fillStyle ='#94db6b';
+                ctx.fillRect(350, 50, 100, 100);
+                ctx.beginPath();
+                        ctx.moveTo(350,200);
+                        ctx.lineTo(350,300);
+                        ctx.lineTo(450,300);
+                        ctx.fill();
+                        ctx.beginPath ();
+                ctx.arc (400, 400, 50, 0, Math.PI * 2, false);
+                ctx.fill();        
+                    
+            </script>
+
+      </body>
+</html>

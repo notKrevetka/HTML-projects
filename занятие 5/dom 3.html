@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> dom 3 </title>
+        <style>
+           body {
+                counter-reset: section;
+            }
+
+            div {
+                position: absolute;
+            }
+
+            h3::before {
+                counter-increment: section;
+                content: "Вопрос " counter(section) ": "; 
+            } 
+
+            UL { 
+                list-style-type: square; 
+                list-style-position: outside; 
+                color: navy; 
+            }
+            li:hover {
+                background: #786b59; /* Цвет фона под ссылкой */ 
+                color: #ffe; /* Цвет ссылки */
+            } 
+        </style>
+    </head>
+    <body onload="funBut()">
+       <p>Сделайте викторину в виде списка, где каждый ответ - пункт. При наведении на пункт списка, он подсвечивается. Нажатие на пункт переводит к следующему вопросу. Номер вопроса задайте с помощью счетчика CSS. В конце динамически создайте блок div, представляющий собой окно с сообщением о количестве правильных ответов, выровненное по центру страницы.</p>
+       <div id="1">
+            <h3>Каких тегов в HTML не существует?
+                <ul>
+                    <li>одинарных </li>
+                    <li>двойных </li>
+                    <li name = "right">тройных </li>
+                </ul>
+            </h3>
+        </div>
+        <div id='2'>
+            <h3>С помощью какого тега следует разделять абзацы?
+                <ul>
+                    <li>&lt;p&gt; </li>
+                    <li>&lt;em&gt; </li>
+                    <li name = "right">&lt;br&gt; </li>
+                    <li>&lt;pre&gt; </li>
+                </ul>
+            </h3>
+        </div>
+        <div id="otv">
+
+        </div>
+        <script>
+
+            var id1, id2, k = 0, i. otv;
+
+            function funBut(){
+                id1 = document.getElementById('1');
+                id2 = document.getElementById('2');
+                id2.style.visibility = "hidden";
+
+                var elems = document.querySelectorAll('li');
+                for (i=elems.length; i--;) {
+                    elems[i].addEventListener('click', fn, false);
+                }
+
+                function fn() {
+                    console.log(this.getAttribute('name'));
+                    if ( this.getAttribute('name') == 'right' ) {
+                        console.log(this);
+                        console.log('This');
+                        k ++; 
+
+                    } else {
+                        console.log('This is link2');
+                    }
+                    id1.style.visibility = "hidden";
+                    id2.style.visibility = "visible";
+                }
+
+                if (i == elems.length){
+                    id2.style.visibility = "hidden";
+
+                }
+                
+            }
+            
+        </script>
+           
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<html>
+	<head > 
+
+	<style>
+		.but{
+			background-color: #005F83; 
+			border: none;
+			color: white;
+			margin-top: 20px;
+			padding: 2% 4%;
+			border-radius: 10px;
+			text-align: center;
+			display: inline-block;
+			font-size: 150%;
+			cursor: pointer;
+			box-shadow: 0 9px #999;
+		}
+
+		.dial{
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: auto;
+			border: solid;
+			padding: 1em;
+			background: white;
+			color: black;
+		}
+	
+		body{
+		text-align: center;
+		}
+			
+	</style>
+
+	</head >
+	<body>
+		<button class="but" onclick="myF()">test</button>
+		<div>
+			
+		</div>
+				
+
+	<script>
+
+		var arr = []
+		var i = 0;
+		var best;
+		
+
+
+		function myF() {
+			console.log( "work" );
+			if (i === 20){
+				var valentins=document.createElement("a");
+				var linkText = document.createTextNode("Back");
+    			valentins.appendChild(linkText);
+				valentins.title = "Back";
+				valentins.style.fontWeight = "bold";
+				valentins.style.textDecoration = "none";	
+				valentins.style.fontStyle = "italic";
+				valentins.href = "new 2 ok.html";
+      			document.body.appendChild(valentins);
+			}
+				else{
+			arr[i] = document.createElement("button");
+			arr[i].innerHTML = "Best!";
+			arr[i].style.marginLeft = "auto";
+			document.body.appendChild(arr[i]);
+			arr[i].dataset.num = i;
+			arr[i].onclick = function () { 
+				const iloc = i;
+				return function () {
+					var x = document.createElement("DIALOG");
+					var t = document.createTextNode("i am the " + (iloc+1));
+    				x.setAttribute("open", "open");
+   					x.appendChild(t);
+    				document.body.appendChild(x);
+					console.log(iloc+1);
+				}
+			}();
+
+			
+			if(i % 2 === 1){
+				arr[i].style.visibility = "hidden";
+			}
+			if(i !== 0){
+			if(i % 10 === 9){
+				let srt = "ffffff";	
+				console.log('fff');
+				
+				document.body.appendChild(document.createElement('br'));
+			}}}
+			i = i + 1;
+			
+		}
+
+
+
+	</script>
+		
+	</body>
+	
+
+</html>

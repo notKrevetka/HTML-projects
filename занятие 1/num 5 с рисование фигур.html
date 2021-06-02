@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        
+               
+
+    </style>
+    <title> dz1.5</title>
+</head>
+      <body>
+            <canvas id="canvas" width="700" height="700"> mass</canvas>
+
+            <script>
+
+                var canv = document.getElementById('canvas');
+                var ctx = canv.getContext('2d');
+                var ctx1 = canv.getContext('2d');
+                var ctxPi = canv.getContext('2d');
+                var ctxT = canv.getContext('2d');
+
+                             
+                ctx.fillStyle ='#94db6b';
+                ctx.fillRect(50, 50, 200, 200);
+
+                ctx1.lineWidth = 3;
+                ctx1.strokeStyle = '#6bdbc1';
+                ctx1.strokeRect(50, 260, 50, 50);
+
+                ctxPi.fillStyle= '#dbb86b';
+                ctxPi.arc(150, 420, 100, 0, Math.PI*2, true);
+                ctxPi.fill();
+                ctxPi.fillStyle = '#c56bdb';
+                ctxPi.font = "30px Georgia";
+                ctxPi.fillText("я квадрат", 80, 430);
+                
+                ctxPi.fillStyle= '#c56bdb';
+                ctxPi.arc(150, 420, 100, 0, Math.PI*2, true);
+                ctxPi.stroke();
+
+                ctxT.strokeStyle = '#dbb86b';
+                ctxT.scale(1, 1);
+                ctxT.beginPath();
+                ctxT.moveTo(450, 50);
+                ctxT.lineTo(260, 250);
+                ctxT.lineTo(660, 250);
+                ctxT.lineTo(450, 50);
+                ctxT.stroke();
+                ctxT.fill();
+
+                ctxT.strokeStyle = '#6bdbc1';
+                ctxT.fillStyle= '#db6bc5';
+                ctxT.beginPath();
+                ctxT.moveTo(450, 300);
+                ctxT.lineTo(260, 420);
+                ctxT.lineTo(360, 520);
+                ctxT.lineTo(550, 520);
+                ctxT.lineTo(660, 420);
+                ctxT.lineTo(450, 300);
+                ctxT.stroke();
+                ctxT.fill();
+            </script>
+
+            
+<p><img src="unikOne.png" width="411" height="150" usemap="#map" alt="Навигация"></p>
+            <map name="map">
+                <area shape="rect" coords="50, 50, 200, 200" alt="Rectangle" href="1 Nesimova ok.html">
+               
+            </map>
+
+      </body>
+</html>

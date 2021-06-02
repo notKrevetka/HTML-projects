@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title> dom2 </title>
+        <style>
+            .button{
+                border-radius: 5%;
+                border: solid;
+                border-width: 3px;
+                position: absolute;
+                display: flex;
+                color: 255, 100, 49;
+            }
+
+            .pic{
+                width: 300px;
+                height: 350px;
+                position: absolute;
+                display: flex;
+            }
+
+        </style>
+    </head>
+    <body onload="funBut()">
+        <p>По телу HTML-документа разбросаны кнопки разного размера, а также произвольный рисунок. Написать программу, которая помещает рисунок точно под нажатой кнопкой, одновременно обрезая его по размеру предыдущей нажатой кнопки (или текущей, если еще ни одна кнопка не была нажата). Кнопки генерировать механизмом DOM (как новые элементы).</p>
+        
+        <script>
+
+            var i, but, img, x, y, w, h, k, index, j;
+
+            function funBut(){
+                for (i = 0; i< 5; i++){
+                    but = document.createElement('button');
+                    document.body.appendChild(but);
+                    but.classList.add("button");
+                    but.setAttribute("onclick", "working(event)");
+
+                    x = parseInt(Math.random() * 500 + 1 );
+                    y = parseInt(Math.random() * 1000 + 1 );
+                    w = parseInt(Math.random() * 100 + 50 );
+                    h = parseInt(Math.random() * 100 + 50 );
+                    but.style.top = x + 'px';
+                    but.style.left = y + 'px';
+                    but.style.width = w + 'px';
+                    but.style.height = h + 'px';
+                    but.style.color = getColor();
+                    but.style.background = getColor();
+                    w=0;
+                    h=0;
+                }
+                img = new Image();
+                img.src = 'пикча.jpg';
+                document.body.appendChild(img);
+                img.classList.add("pic");
+                img.id = 'pick';
+
+                i = document.getElementsByTagName('button');
+                console.log(i);
+            }
+            
+            function working (event) {
+                img = document.getElementById('pick');
+                console.log(event.target);
+                if((h===0)&&(w===0)){
+                    w = event.target.style.width;
+                    h= event.target.style.height;
+                    x = event.target.style.top;
+                    y = event.target.style.left;
+                    x = parseInt(x);
+                    console.log(x);
+                    h = parseInt(h);
+                    console.log(h);
+                    x += h;
+                    x = x +'px';
+                    h = h +'px';
+                    console.log(x);
+                    console.log(x);
+                    img.style.width = w;
+                    img.style.height = h;
+                    img.style.top = x;
+                    img.style.left = y;
+                }
+                else {
+                    img.style.width = w;
+                    img.style.height = h;
+                    img.style.top = x;
+                    img.style.left = y;
+                    w = event.target.style.width;
+                    h= event.target.style.height;
+                    x = event.target.style.top;
+                    y = event.target.style.left;
+                    x = parseInt(x);
+                    console.log(x);
+                    h = parseInt(h);
+                    console.log(h);
+                    x += h;
+                    x = x +'px';
+                    h = h +'px';
+                    console.log(x);
+                }
+                console.log(w);
+                console.log(h);
+              
+            }
+
+           
+          //      getRand = () => parseInt(Math.random() * 100 + 1 );
+          //      getSi = () => parseInt(Math.random() * 100 + 50 );
+                getColor = () => '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+                
+        </script>
+           
+    
+
+
+</body>
+</html>
