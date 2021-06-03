@@ -47,3 +47,16 @@ li:hover {
     background: #786b59; /* Цвет фона под ссылкой */ 
     color: #ffe; /* Цвет ссылки */ 
 }
+
+.lier{
+    position: inline;
+    display: flex;
+    background-color: #786b59;
+    visibility: visible;
+}
+
+.xlier{
+    position: absolute;
+    bottom: 0; right: 0;
+    cursor: pointer;
+}

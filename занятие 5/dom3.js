@@ -1,11 +1,13 @@
             var id1, id2, k = 0, i, otv, r=0, elems, but, inp;
             var table, tr, td, stroki = 0, val;
+            var lie, liex;
 
             function funBut(){
                 id1 = document.getElementById('1');
                 id2 = document.getElementById('2');;
                 id2.style.visibility = "hidden";
                 id1.style.visibility = "visible";
+                fnLie();
 
                 elems = document.querySelectorAll('li');
                 for (i=elems.length; i--;) {
@@ -40,6 +42,7 @@
                 }
 
                 function fnk() {
+                    //еще тут нужно проверять было ли имя введено ранее
                     otv.style.visibility = "hidden";
                     but.parentNode.removeChild(but);
                     inp = document.createElement('input');
@@ -74,7 +77,6 @@
                             td.innerHTML = val;
                         } else {
                             td.innerHTML = k;
-                  //          td.style.width = 25 + "%";
                         }
                         tr.appendChild(td);
                      }
@@ -89,7 +91,6 @@
                             td.innerHTML = val;
                         } else {
                             td.innerHTML = k;
-                  //          td.style.width = 25 + "%";
                         }
                         tr.appendChild(td);
                      }
@@ -99,7 +100,6 @@
 
                 but.parentNode.removeChild(but);
                 inp.parentNode.removeChild(inp);
-             //   table.style.visibility = "hidden";
                 stroki ++;
                 k = 0;
                 r = 0;
@@ -113,6 +113,9 @@
                 table.style.visibility = "hidden";
                 id1.style.visibility = "visible";
                 but.parentNode.removeChild(but);
+                lieX.parentNode.removeChild(lieX);
+                fnLie();
+
 
                 elems = document.querySelectorAll('li');
                 for (i=elems.length; i--;) {
@@ -120,3 +123,36 @@
                     
                 }
             }
+
+            function fnLie(){
+                lie = document.createElement('div');
+                    document.body.appendChild(lie);
+                    lie.classList.add("lier");
+                
+                    //lie.style.top = getTop() + 'px';
+                    lie.style.left = getPos() + '%';
+                    lie.style.width = getSize() + 'px';
+                    lie.style.height = getSize() + 'px';
+                lie.addEventListener('click', fnLi, false);
+                
+            }
+            
+            getPos = () => parseInt(Math.random() * 100 + 1 );
+            getSize = () => parseInt(Math.random() * 150 + 50);
+            getTop = () => parseInt(Math.random() * 900 + 200);
+
+            function fnLi(){
+                liex = document.createElement('div');
+                document.body.appendChild(liex);
+                liex.innerHTML= '<input type = "checkbox" id="chb">жулик</input>';
+                liex.classList.add("xlier");
+                lie.parentNode.removeChild(lie);
+                liex.addEventListener('change', funLiCh, false);;
+            }
+
+            function funLiCh(){
+                if (document.getElementById('chb').checked) {
+                    //подсветить красным неправильные улы
+                }
+            }
+            
