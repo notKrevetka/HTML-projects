@@ -1,6 +1,12 @@
             var id1, id2, k = 0, i, otv, r=0, elems, but, inp;
             var table, tr, td, stroki = 0, val;
             var lie, liex;
+            var right = document.getElementsByName('right');
+            //wrong[0].onmouseover= function(){
+                //wrong[0].style.background ="red";
+            //}
+            var wrong=document.getElementsByName('wrong');
+            
 
             function funBut(){
                 id1 = document.getElementById('1');
@@ -147,12 +153,32 @@
                 liex.innerHTML= '<input type = "checkbox" id="chb">жулик</input>';
                 liex.classList.add("xlier");
                 lie.parentNode.removeChild(lie);
-                liex.addEventListener('change', funLiCh, false);;
+                liex.addEventListener('change', funLiCh, false);
             }
-
-            function funLiCh(){
+           function funLiCh(){
+                //if (document.getElementById('chb').checked){
+           // wrong=document.getElementsByName('wrong');
+            for (var z=0; z < wrong.length; z++){
+                wrong[z].addEventListener('mouseover', red_hover, false);
+                wrong[z].addEventListener('mouseout', basic, false);
+            }
+       }
+   // }
+            function basic(){
+                if (document.getElementById('chb').checked){
+                this.style.background="";
+            }
+        }
+                //wrong.addEventListener('mouseover', red_hover, false);
+            function red_hover(){
+                if (document.getElementById('chb').checked){
+                console.log("red");
+                console.log(this);
+                this.style.background="red";
                 if (document.getElementById('chb').checked) {
-                    //подсветить красным неправильные улы
+                    console.log("checked");
+                    //wrong[0].style.background="red";
+                    }
                 }
             }
             
