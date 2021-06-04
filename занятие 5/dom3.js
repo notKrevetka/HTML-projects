@@ -2,9 +2,6 @@
             var table, tr, td, stroki = 0, val;
             var lie, liex;
             var right = document.getElementsByName('right');
-            //wrong[0].onmouseover= function(){
-                //wrong[0].style.background ="red";
-            //}
             var wrong=document.getElementsByName('wrong');
             
 
@@ -13,6 +10,9 @@
                 id2 = document.getElementById('2');;
                 id2.style.visibility = "hidden";
                 id1.style.visibility = "visible";
+                liex = document.createElement('div');
+                document.body.appendChild(liex);
+                liex.style.visibility = "hidden";
                 fnLie();
 
                 elems = document.querySelectorAll('li');
@@ -45,6 +45,8 @@
                     document.body.appendChild(but);
                     but.innerHTML = "нажми меня";
                     but.addEventListener('click', fnk, false);
+                    liex.parentNode.removeChild(liex);
+   
                 }
 
                 function fnk() {
@@ -54,7 +56,7 @@
                     inp = document.createElement('input');
                     document.body.appendChild(inp);
                     inp.placeholder = "имя";
-                    inp.id = "inp"
+                    inp.id = "inp";
 
                     but = document.createElement('button');
                         document.body.appendChild(but);
@@ -88,19 +90,30 @@
                      }
                  table.appendChild(tr); 
                 }else{
-                    console.log(table);
-                    tr = document.createElement('tr');
-                    for (j = 1; j < 3; j++) {
-                        let td = document.createElement('td');
-                        if (j === 1){
-                            val = document.getElementById('inp').value;
-                            td.innerHTML = val;
-                        } else {
-                            td.innerHTML = k;
+                    val = document.getElementById('inp').value;
+                    var m=0;
+                    for (var l=0; l<table.rows.length; l++){
+                        if(val==table.rows[l].cells[0].innerHTML){
+                           table.rows[l].cells[1].innerHTML=k; 
+                           m=1;
+                           console.log(m);
                         }
-                        tr.appendChild(td);
-                     }
-                 table.appendChild(tr);
+                    }
+                    console.log(table);
+                    if(m==0){
+                        tr = document.createElement('tr');
+                        for (j = 1; j < 3; j++) {
+                            let td = document.createElement('td');
+                            if (j === 1){
+                               // val = document.getElementById('inp').value;
+                                td.innerHTML = val;
+                            } else {
+                                td.innerHTML = k;
+                            }
+                            tr.appendChild(td);
+                         }
+                     table.appendChild(tr);
+                    } 
                 }
                 console.log(table);
 
@@ -116,39 +129,52 @@
             }  
 
             function funNach(){
+                console.log(table.rows[0].cells.length);
                 table.style.visibility = "hidden";
                 id1.style.visibility = "visible";
                 but.parentNode.removeChild(but);
-                lieX.parentNode.removeChild(lieX);
-                fnLie();
-
-
                 elems = document.querySelectorAll('li');
+                liex = document.createElement('div');
+                document.body.appendChild(liex);
+                liex.style.visibility = "hidden";
                 for (i=elems.length; i--;) {
                     elems[i].addEventListener('click', fn, false);
-                    
                 }
+                fnLie();
             }
 
             function fnLie(){
+                if(stroki != 0){
+                    lie.parentNode.removeChild(lie);
                 lie = document.createElement('div');
                     document.body.appendChild(lie);
                     lie.classList.add("lier");
                 
-                    //lie.style.top = getTop() + 'px';
+                    lie.style.top = getTop() + 'px';
                     lie.style.left = getPos() + '%';
                     lie.style.width = getSize() + 'px';
                     lie.style.height = getSize() + 'px';
                 lie.addEventListener('click', fnLi, false);
+                }else {
+                    lie = document.createElement('div');
+                    document.body.appendChild(lie);
+                    lie.classList.add("lier");
+                
+                    lie.style.top = getTop() + 'px';
+                    lie.style.left = getPos() + '%';
+                    lie.style.width = getSize() + 'px';
+                    lie.style.height = getSize() + 'px';
+                    lie.addEventListener('click', fnLi, false);
+                }
                 
             }
             
             getPos = () => parseInt(Math.random() * 100 + 1 );
             getSize = () => parseInt(Math.random() * 150 + 50);
-            getTop = () => parseInt(Math.random() * 900 + 200);
+            getTop = () => parseInt(Math.random() * 250 + 400);
 
             function fnLi(){
-                liex = document.createElement('div');
+                liex.style.visibility = "visible";
                 document.body.appendChild(liex);
                 liex.innerHTML= '<input type = "checkbox" id="chb">жулик</input>';
                 liex.classList.add("xlier");
@@ -156,14 +182,11 @@
                 liex.addEventListener('change', funLiCh, false);
             }
            function funLiCh(){
-                //if (document.getElementById('chb').checked){
-           // wrong=document.getElementsByName('wrong');
             for (var z=0; z < wrong.length; z++){
                 wrong[z].addEventListener('mouseover', red_hover, false);
                 wrong[z].addEventListener('mouseout', basic, false);
             }
        }
-   // }
             function basic(){
                 if (document.getElementById('chb').checked){
                 this.style.background="";
@@ -172,13 +195,7 @@
                 //wrong.addEventListener('mouseover', red_hover, false);
             function red_hover(){
                 if (document.getElementById('chb').checked){
-                console.log("red");
-                console.log(this);
-                this.style.background="red";
-                if (document.getElementById('chb').checked) {
-                    console.log("checked");
-                    //wrong[0].style.background="red";
-                    }
+                this.style.background="red";         
                 }
             }
             
