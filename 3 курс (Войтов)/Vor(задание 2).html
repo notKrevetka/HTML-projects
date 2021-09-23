@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> задание 2 </title>
+    <style>  
+    </style>
+  </head>
+    <body>
+
+        <input type="button" value="вычислить"   onclick= dof();>
+        n: <input type="number" id="123" >
+
+    </body>
+
+    <script>
+        function  dof(){
+
+            var n = document.getElementById('123').value;
+            console.log("n = " + n);
+            var S=0, p = 1;
+            for (let i=1; i<=n; i++){
+                p*= i+1;
+                S= S + i/p; 
+                console.log("S="+S);
+
+            }
+            console.log("S = " + S);
+        }
+
+    </script>
+</html>
