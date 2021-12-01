@@ -29,5 +29,19 @@
                 </ul>
             </h3>
         </div>
+        <script> 
+       function funBut(){
+                id1 = document.getElementById('1');
+                id2 = document.getElementById('2');;
+                id2.style.visibility = "hidden";
+                id1.style.visibility = "visible";
+                fnLie();
+
+                elems = document.querySelectorAll('li');
+                for (i=elems.length; i--;) {
+                    elems[i].addEventListener('click', fn, false);
+                }
+            }
+        </script>
     </body>
 </html>
