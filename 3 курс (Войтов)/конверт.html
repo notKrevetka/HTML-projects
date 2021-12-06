@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        body{
+            margin: 0px;
+        }
+        img {
+            width: 15px;
+            height: 15px;
+        }
+        .clozed {
+            position: fixed;
+            animation-name: clozed;
+            animation-duration: 5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;	
+        }
+        .open {
+            position: fixed;
+            animation-name: open;
+            animation-duration: 5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;	
+        }
+
+        .cross {
+            position: fixed;
+            animation-name: cross;
+            animation-duration: 5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;	
+        }
+
+        @keyframes clozed {         
+            0% {left: 50px; top: 350px;}
+            20% {left: 400px; top: 650px;}
+            36% {left: 750px; top: 350px;}
+            52% {left: 750px; top: 750px;}
+            68% {left: 50px; top: 750px;}
+            84% {left: 50px; top: 350px;}
+            99% {left: 750px; top: 350px; opacity: 1;}
+            100% {display: none; opacity: 0;}
+        }
+
+        @keyframes open {         
+            0% {left: 50px; top: 350px;}
+            20% {left: 400px; top: 50px;}
+            36% {left: 750px; top: 350px;}
+            52% {left: 750px; top: 750px;}
+            68% {left: 50px; top: 750px;}
+            84% {left: 50px; top: 350px;}
+            99% {left: 750px; top: 350px; opacity: 1;}
+            100% {display: none; opacity: 0;}
+        }
+
+        @keyframes cross {         
+            0% {left: 750px; top: 350px;}
+            49% {left: 50px; top: 750px;}
+            50% {left: 50px; top: 350px;}
+            99% {left: 750px; top: 750px; opacity: 1;}
+            100% {display: none; opacity: 0;}
+        }
+  
+    </style>
+    <title> конверт</title>
+</head>
+      <body>
+          <div>
+            <canvas id="canvas" style="display: block;"> mass</canvas>
+            <button  type="button"onclick="closed()">closed</button>
+            <button type="button"onclick="opened()"> opened </button>
+            <button  type="button"onclick="cross()">crossed</button>
+            <div  id="forpick"> </div>
+          </div>  
+
+            <script>
+
+                var canv = document.getElementById('canvas');
+                var ctx = canv.getContext('2d');
+                canv.width = 800;
+                canv.height = 800;
+
+               function closed(){
+                   clear();
+                    ctx.lineWidth = 10;
+                    ctx.beginPath();
+                            ctx.moveTo(50,350);
+                            ctx.lineTo(400,650);
+                            ctx.lineTo(750,350);
+                            ctx.lineTo(750,750);
+                            ctx.lineTo(50,750);
+                            ctx.lineTo(50,350);
+                            ctx.lineTo(750,350);
+                            ctx.strokeStyle = "red";
+                            ctx.stroke();
+                    var clozed = document.getElementById("forpick");
+                    clozed.innerHTML="<div class='clozed'><img src='https://st16.stblizko.ru/images/localized/001/242/376_original.png'></div>";
+                }
+
+               function opened(){
+                   clear();
+                    ctx.lineWidth = 10;
+                    ctx.beginPath();
+                            ctx.moveTo(50,350);
+                            ctx.lineTo(400,50);
+                            ctx.lineTo(750,350);
+                            ctx.lineTo(750,750);
+                            ctx.lineTo(50,750);
+                            ctx.lineTo(50,350);
+                            ctx.lineTo(750,350);
+                            ctx.strokeStyle = "green";
+                            ctx.stroke();
+                    var open = document.getElementById("forpick");
+                    open.innerHTML="<div class='open'><img src='https://st16.stblizko.ru/images/localized/001/242/376_original.png'></div>";
+               }
+
+               function cross(){
+                   clear();
+                    ctx.lineWidth = 10;
+                    ctx.beginPath();
+                    ctx.moveTo(50,350);
+                    
+                            ctx.lineTo(400,650);
+                            ctx.lineTo(750,350);
+                            ctx.lineTo(750,750);
+                            ctx.lineTo(50,750);
+                            ctx.lineTo(50,350);
+                            ctx.lineTo(750,350);
+                            ctx.strokeStyle = "blue";
+                            ctx.stroke();
+                    var cross = document.getElementById("forpick");
+                    cross.innerHTML="<div class='cross'><img src='https://st16.stblizko.ru/images/localized/001/242/376_original.png'></div>";
+               }
+
+               function clear(){
+                canvas.width = canvas.width;
+               }   
+
+            </script>
+
+      </body>
+</html>
