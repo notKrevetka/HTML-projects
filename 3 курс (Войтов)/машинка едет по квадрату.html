@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .mashina {
+           z-index: 4;
+           top: 80px;
+           left: 80px;
+           position:absolute;
+           transform:scale(-1, 1);
+          
+           
+        }
+        .road{
+            z-index: 0;
+            position:absolute;
+        }
+        .but{
+            z-index: 1;
+            position:absolute;
+        }
+  
+    </style>
+    <title> машинка </title>
+</head>
+      <body onload="fload()">
+            <div>
+                <button class='but' id="but" type="button" >поехали</button>
+                <img id="car" class='mashina' width="50px" height="30px" src='https://www.clipartmax.com/png/full/50-505491_clip-art-of-car-photo-medium-size-car-clip-art-transparent.png'>
+                <canvas id="canvas" class='road'> mass</canvas>
+                 </div>
+ 
+
+            <script>
+                var rotate;
+                var t, l;
+                var but;
+                var car;
+                var canv = document.getElementById('canvas');
+                var ctx = canv.getContext('2d');
+                canv.width = 800;
+                canv.height = 500;
+
+                    ctx.lineWidth = 10;
+                    ctx.beginPath();
+                            ctx.moveTo(100,100);
+                            ctx.lineTo(700,100);
+                            ctx.lineTo(700,400);
+                            ctx.lineTo(100,400);
+                            ctx.lineTo(100,95);
+                            ctx.strokeStyle = "red";
+                            ctx.stroke();
+
+
+                function fload(){
+                    car  = document.getElementById("car").style;
+                    but = document.getElementById("but");
+                    but.onclick = fMove;
+                    
+                }
+
+                function a(){
+                    var z = setInterval(function(){  
+                        l +=5;        
+                        car.left = l +'px';
+                            if ((l>=680)){
+                                car.transform = ' scale(-1, 1) rotate('+rotate+'deg)';
+                                clearInterval(z);
+                                rotate+=-90;
+                                b();
+                            }
+                        },25);
+
+                }
+                function b(){
+                    var z = setInterval(function(){     
+                        t += 5;     
+                        car.top=t+'px';
+                            if ((t>=400)){
+                                car.transform = ' scale(-1, 1) rotate('+rotate+'deg)';
+                                clearInterval(z);
+                                rotate+=-90;
+                                c();      
+                            }
+                        },25);
+                       
+                    
+                }
+                function c(){
+                    var z = setInterval(function(){          
+                        l +=-5;        
+                        car.left = l +'px';
+                            if ((l<=70)){
+                                car.transform = ' scale(-1, 1) rotate('+rotate+'deg)';
+                                clearInterval(z);
+                                rotate+=-90;
+                                d();
+                            }
+                        },25);
+                    
+                }
+                function d(){
+                    var z = setInterval(function(){          
+                        t += -5;     
+                        car.top=t+'px';
+                            if ((t<=80)){
+                                car.transform = ' scale(-1, 1) rotate('+rotate+'deg)';
+                                clearInterval(z);
+                                rotate+=-90;   
+                                a();
+                            }
+                        },25);
+                        
+                }
+                
+                function fMove(){
+                    
+                    rotate = -90;
+                    t = 80;
+                    l =80;
+                    car.top = t +'px';
+                    car.left =l +'px';
+                    a();
+                }
+             </script>
+
+      </body>
+</html>
