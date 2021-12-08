@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>таблица</title> 
+
+<style>
+  table { 
+    margin-left: auto;  
+    margin-right: auto; 
+    position: relative;  
+    top: 10px; }
+</style>
+</head>
+<center> 
+<body>
+  <h3>Таблица </h3>
+  <button id="button1" onclick="create_control();" >создать</button>   
+  <button id="button3" onclick="delete2();" >удалить</button>  
+  <button size=120 id="button4" onclick="getbyid();" >get idbt01</button>       
+</body>
+</center>
+
+<script>
+
+var table; 
+var rows  = 5;  
+var cells  = 6; 
+var element;
+var s; var objid;
+var count=0;
+var array = [];
+
+function setElementValue(elementId, value) {
+        element = document.getElementById(elementId);
+        if(!element)  
+          return false;
+        element.value = value;
+          return true;
+}
+
+function getvalue(id) {
+  objid= document.getElementById(id);
+  if(!objid)  
+    return false;
+  s = objid.value;
+  if (!s) {
+    s= objid.firstChild.nodeValue;
+  }
+    return s;
+}
+
+function prqq2(i,j,count)  { 
+  var id= 'idbt' + i + j;
+   if (getvalue(id)!="X")  setElementValue(id, "X");
+   else setElementValue(id, array[count-1]);
+} 
+
+function getbyid()
+  {   
+     var s= getvalue("idbt01");
+     if(!s)  {   alert(" == not set == ");  return false; }
+     alert(" == tt == s="+s);
+  }
+
+  function delete2() 
+  {  
+      if (typeof table !=="undefined"){
+          table.parentNode.removeChild(table);
+     }
+  }
+
+var btn; 
+function ndobt(i,j) {  
+      btn = document.createElement("input");
+      s= 'idbt' + i + j;  
+      btn.id = s;   
+      btn.type = 'button'; 
+      btn.value =count*count;
+      array[count-1]=count*count;
+      btn.setAttribute('onclick','prqq2('+i+','+j+', '+count+' ); '); 
+}
+
+function create_control()  
+{
+  table = document.createElement("table");
+  table.id= "idt";
+  var body = document.getElementsByTagName("body")[0];
+  table.border=0;    
+  var tableBody = document.createElement("tbody");
+
+  for (var i = 0; i < rows; i++) {
+     var row = document.createElement("tr"); 
+
+     for (var j = 0; j < cells; j++) { 
+        var cell = document.createElement("td");
+        cell.height=30;  cell.style.color="blue";  cell.width=30;
+        count++;
+        ndobt(i,j);
+        cell.appendChild(btn); 
+        row.appendChild(cell);
+     } 
+     tableBody.appendChild(row);
+  } 
+
+  table.appendChild(tableBody);
+  body.appendChild(table);
+} 
+
+</script>
+</html>
+
+

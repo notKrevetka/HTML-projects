@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+  <TITLE>массив с именами</TITLE>
+</HEAD>
+<BODY>
+
+ <SCRIPT>
+    var pers, i;
+    pers= new Array(3);
+    riv = new Array(4);
+
+    pers[1]= new person("Имя 1", "19", "синий", "123-45-676"," ivanov@mail.ru ");
+    pers[2]= new person("Имя 2", "18", "русый", "123-45-674"," ivanov@mail2.ru ");
+    pers[3]= new person("Имя 3", "17", "фиолетовый", "123-45-627"," ivanov@mail3.ru ");
+
+    riv[1]= new river("Имя 1", "19 km", "1 m", "5 m ");
+    riv[2]= new river("Имя 2", "180 km", "120 m", "27 m");
+    riv[3]= new river("Имя 3", "150 km", "20m", "6 m");
+    riv[4]= new river("Имя 3", "70 km", "14 m", "12 m");
+
+  function person(name,age,adr,tel,email) {
+   this.name = name;
+   this.age = age;
+   this.adr = adr;
+   this.tel = tel;
+   this.email = email;
+   this.PrintPerson = PrintPerson;
+  }
+
+  function PrintPerson() {
+   st1= "имя: " + this.name + "<br>\n";
+   st2= "возраст: " + this.age + "<br>\n";
+   st3= "цвет волос: " + this.adr + "<br>\n";
+   st4= " tel: " + this.tel + "<br>\n";
+   st5= "email: " + this.email + "<br>\n";
+   document.write(st1, st2, st3, st4, st5);
+  }
+
+  function doPerson() {
+    for (i=1; i<=3; i++) {  
+        pers[i].PrintPerson();
+    }
+  }
+
+  function doRiver() {
+    for (i=1; i<=3; i++) {  
+        riv[i].PrintRiver();
+    }
+  }
+  function river(name,length,width,depth) {
+   this.name = name;
+   this.length = length;
+   this.width = width;
+   this.depth = depth;
+   this.PrintRiver = PrintRiver;
+  }
+
+  function PrintRiver() {
+   st1= "имя: " + this.name + "<br>\n";
+   st2= "Длина: " + this.length + "<br>\n";
+   st3= "Ширина: " + this.width + "<br>\n";
+   st4= " Глубина: " + this.depth + "<br>\n";
+   document.write(st1, st2, st3, st4);
+  }
+
+ </SCRIPT>
+
+<input type="button" value="начать" onclick=  doPerson();>
+<input type="button" value="реки" onclick=  doRiver();>
+
+
+ 
+</BODY>
+</HTML>
+
